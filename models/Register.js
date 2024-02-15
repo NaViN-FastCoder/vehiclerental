@@ -37,7 +37,7 @@ module.exports=(sequelize,DataTypes)=>{
                 notEmpty:true
                 
             },
-            // unique: 'compositeIndex'
+           
         },
         Date:{
             type:DataTypes.DATE,
@@ -52,9 +52,6 @@ module.exports=(sequelize,DataTypes)=>{
         fields: ['SpecificModel', 'Date']
     }]}
     )
-    // Register.addConstraint('unique_SpecificModel_Date',{
-    //     type:'unique',
-    //     fields:['SpecificModel','Date']
-    // })
+  
     return Register;
 };

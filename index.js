@@ -1,4 +1,5 @@
 const express=require("express");
+const port = process.env.PORT || 3001;
 const bodyParser= require("body-parser");
 const app=express();
 
@@ -56,7 +57,7 @@ app.get('/twowheelerdata', async (req, res) => {
   });
   
 db.sequelize.sync().then((req)=>{
-    app.listen(3001,()=>{
-        console.log("server running")
-    });
+  app.listen(port, () => {
+    console.log(`Server is listening on port ${port}`);
+});
 });
