@@ -1,31 +1,31 @@
 const express=require("express");
-
+const bodyParser= require("body-parser");
 const app=express();
 
 
 
 const db=require("./models");
 
-const {SET}=require("./models")
 
-app.get("/insert",(req,res)=>{
-    SET.create({
-        firstName:"Niraj",
-        lastName:"Tank",
-        NumberOfWheels:"44",
-        TypeOfWheel:"2-WHEELER",
-        SpecificWheel:"Contra",
-        Date:"2023-02-22"
+const {rentalData}=require("./models")
+app.use(bodyParser.json());
 
+app.post("/insert",(req,res)=>{
+    const{
+        firstName,lastName,NumberOfWheels,TypeOfWheel,SpecificWheel,Date
+    }=req.body;
+    rentalData.create({
+        "firstName":firstName,"lastName":lastName,"NumberOfWheels":NumberOfWheels,"TypeOfWheel":TypeOfWheel,
+        "SpecificWheel":SpecificWheel,"Date":Date
     }).then(()=>{ res.send("inserted")}).catch((err)=>{
         console.log(err);
         
     });
-   
-});
+})
+
 
 app.get("/select",(req,res)=>{
-    SET.findAll().then((users)=>{
+    rentalData.findAll().then((users)=>{
         res.send(users)
     })
     

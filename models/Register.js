@@ -1,7 +1,7 @@
 
 
 module.exports=(sequelize,DataTypes)=>{
-    const Register=sequelize.define("SET",{
+    const Register=sequelize.define("rentalData",{
         firstName:{
             type:DataTypes.STRING,
             allowNull:false,
@@ -35,6 +35,7 @@ module.exports=(sequelize,DataTypes)=>{
             allowNull:false,
             validate:{
                 notEmpty:true
+                
             }
         },
         Date:{
