@@ -23,20 +23,21 @@ module.exports=(sequelize,DataTypes)=>{
                 notEmpty:true
             }
         },
-        TypeOfWheel:{
+        TypeOfVehicle:{
             type:DataTypes.STRING,
             allowNull:false,
             validate:{
                 notEmpty:true
             }
         },
-        SpecificWheel:{
+        SpecificModel:{
             type:DataTypes.STRING,
             allowNull:false,
             validate:{
                 notEmpty:true
                 
-            }
+            },
+            // unique: 'compositeIndex'
         },
         Date:{
             type:DataTypes.DATE,
@@ -45,7 +46,15 @@ module.exports=(sequelize,DataTypes)=>{
                 notEmpty:true
             }
         }
-    });
-
+    },{
+    indexes: [{
+        unique: true,
+        fields: ['SpecificModel', 'Date']
+    }]}
+    )
+    // Register.addConstraint('unique_SpecificModel_Date',{
+    //     type:'unique',
+    //     fields:['SpecificModel','Date']
+    // })
     return Register;
 };
