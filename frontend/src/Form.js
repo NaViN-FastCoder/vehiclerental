@@ -1,5 +1,5 @@
 import React ,{useEffect, useState} from 'react';
-
+import 'tailwindcss/tailwind.css';
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 function Form(){
@@ -123,19 +123,19 @@ function Form(){
 
     return(
         <div>
-            <div>
+            <div className='flex'>
               {/* First Question */}
                 {firstPage && (
                     <div>
-                <label>First , what's your name</label>
+                <label className='font-bold '>First , what's your name</label>
                 <div>
-                    <label>First Name</label>
-                    <input type='text' value={firstName} onChange={handleFirstNameChange}/>
+                    <label className="font-serif">First Name</label>
+                    <input type='text' className='w-1/2 border border-gray-300 px-4 py-2' value={firstName} onChange={handleFirstNameChange}/>
 
-                    <label>Last Name</label>
-                    <input type='text' value={lastName} onChange={handleLastNameChange}/>
+                    <label className="font-serif">Last Name</label>
+                    <input type='text' className='w-1/2 border border-gray-300 px-4 py-2' value={lastName} onChange={handleLastNameChange}/>
                     
-                    <button onClick={handleNext}>Next</button></div>
+                    <button className=' w-1/2 bg-grey-250 hover:bg-blue-450 text-white font-bold py-2 px-4' onClick={handleNext}>Next</button></div>
                 </div>)}
 
                 {/* Second Question 2 or 4 wheeler */}
@@ -155,7 +155,7 @@ function Form(){
                   <FormControlLabel value="four-wheeler" control={<Radio />} label="4-wheeler" />
        
                 </RadioGroup>
-                <button onClick={handleWheelNextPage}>Next</button>
+                <button className='w-1/2 bg-grey-250 hover:bg-blue-450 text-white font-bold py-2 px-4' onClick={handleWheelNextPage}>Next</button>
               </FormControl>
              )}
        {/* Third question asking for type of vehicle  */}
@@ -166,7 +166,7 @@ function Form(){
         {twoWheeler ?         
            <div>
               <div>                  
-                <label>Select type of vehicle</label>
+                <label className="font-bold  ">Select type of vehicle</label>
 
               {options.map((option, index) => (
               <div key={index}>
@@ -180,7 +180,7 @@ function Form(){
       ))}
 
       {hideOptions &&(
-      <button onClick={handleVehicleSelection}>Next</button>)}
+      <button className='w-1/2 bg-grey-250 hover:bg-blue-450 text-white font-bold py-2 px-4' onClick={handleVehicleSelection}>Next</button>)}
 
       
       <div>
@@ -197,7 +197,7 @@ function Form(){
                 >
                   <FormControlLabel value={vehicleType.value} control={<Radio />} label={vehicleType.value} />
                  </RadioGroup>
-                <button onClick={handleDatePage}>Next</button>
+                <button className='w-1/2 bg-grey-250 hover:bg-blue-450 text-white font-bold py-2 px-4'onClick={handleDatePage}>Next</button>
               </FormControl>)}
         </div>
     </div>
@@ -213,7 +213,7 @@ function Form(){
           
                         <div>
                        
-       <label>Select type of vehicle</label>
+       <label className='font-bold '>Select type of vehicle</label>
 
       
 
@@ -233,7 +233,7 @@ function Form(){
         </div>
       ))}
       {hideOptions &&(
-      <button onClick={handleVehicleSelection}>Next</button>)}
+      <button className='w-1/2 bg-grey-250 hover:bg-blue-450 text-white font-bold py-2 px-4' onClick={handleVehicleSelection}>Next</button>)}
 
       
       <div>
@@ -249,7 +249,7 @@ function Form(){
                   <FormControlLabel value={vehicleType.value} control={<Radio />} label={vehicleType.value} />
      
                 </RadioGroup>
-                <button onClick={handleDatePage}>Next</button>
+                <button className='w-1/2 bg-grey-250 hover:bg-blue-450 text-white font-bold py-2 px-4' onClick={handleDatePage}>Next</button>
               </FormControl>)}
         </div>
     </div>
@@ -269,7 +269,7 @@ function Form(){
       dateFormat="yyyy/dd/mm"
 />
     <div>
-      <button onClick={book}>Book</button></div></div>
+      <button className='w-1/2 bg-grey-250 hover:bg-blue-450 text-white font-bold py-2 px-4' onClick={book}>Book</button></div></div>
   )}
        </div>            
         </div>        
