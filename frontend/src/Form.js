@@ -43,6 +43,10 @@ function Form(){
       const handleWheelNextPage=()=>{
         setNextPage(false);
         setTypeofVehiclePage(true);
+        if(wheelValue==='two-wheeler')
+        {
+          setTwoWheeler(true);
+        }
       }
 
       //Vehicle type is it sports or some other
