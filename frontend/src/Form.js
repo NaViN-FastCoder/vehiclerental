@@ -1,7 +1,7 @@
 import React ,{useEffect, useState} from 'react';
 import Numberofwheels from './Numberofwheels';
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material';
-
+import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 function Form(){
     const[firstName,setFirstName]=useState('');
     const[lastName,setLastName]=useState('');
@@ -11,17 +11,25 @@ function Form(){
     const[wheelValue,setWheelValue]=useState('');
     const[twoWheeler,setTwoWheeler]=useState(false);
     const [options, setOptions] = useState([]);
+    const[vehicleType,setVehicleType]=useState([]);
+    const[hideOptions,sethideOptions]=useStatee(true);
+    const[vehicleModel,setVehicleModel]=useState(false);
+    const[datePage,setDatePage]=useState(false);
+    const[date,setDate]=useState(null);
 
     const handleNext=()=>{
         setFirstPage(false)
         setNextPage(true);
     }
+
     const handlewheelChange = (event) => {
         setWheelValue(event.target.value);
       };
+
       const handleFirstNameChange=(event)=>{
         setFirstName(event.target.value);
       }
+
       const handleLastNameChange=(event)=>{
         setLastName(event.target.value);
       }
@@ -30,11 +38,35 @@ function Form(){
         setNextPage(false);
         setTypeofVehiclePage(true);
       }
+
+      const changeVehicleType=(event)=>{
+            setVehicleType(event.target.value);
+      }
+
+
+      const handleVehicleSelection=()=>{
+        
+        sethideOptions(false);
+        setVehicleModel(true);
+
+
+      }
+      const handleDatePage=()=>{
+        setVehicleModel(false);
+        setTypeofVehiclePage(false);
+        setDatePage(true);
+      }
+      const handleDateChange=(event)=>{
+
+        setDate(event.target.value)
+      }
+
+
 useEffect(()=>{
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch('https://localhost:3001//twowheelerdata')
     .then(response => response.json())
     .then(data => {
-      // Extracting column names from the first user object
+      
       const columnNames = Object.keys(data[0]);
       setOptions(columnNames);
     })
@@ -84,18 +116,64 @@ useEffect(()=>{
               
 
                )}
+
         {typeofVehiclePage && (
     <div>
-        {twoWheeler ? <div>
-                        <label>Select type of vehicle</label>
+
+        {twoWheeler ?
                         <div>
-      <h2>Choose a column:</h2>
+          
+                        <div>
+                       
+       <label>Select type of vehicle</label>
+
+      
+
+
       {options.map((option, index) => (
         <div key={index}>
-          <input type="radio" id={`option-${index}`} name="column" value={option} />
-          <label htmlFor={`option-${index}`}>{option}</label>
+
+
+          <input type="radio"
+           id={`option-${index}`} 
+           name="column"
+            value={option}
+            onChange={changeVehicleType} />
+
+          <label htmlFor={`option-${index}`}>  {option}  </label>
+
+          
+
         </div>
       ))}
+      {hideOptions &&(
+      <button onClick={handleVehicleSelection}>Next</button>)}
+
+      
+      <div>
+        
+{vehicleModel &&(
+        <FormControl component="fieldset">
+                <FormLabel component="legend">Select Model</FormLabel>
+                
+                <RadioGroup
+                  aria-label="selectmodel"
+                  name="modelselection"
+                  value={wheelValue}
+                  onChange={handlemodelChange}
+                >
+
+                  <FormControlLabel value={vehicleType.value} control={<Radio />} label={vehicleType.value} />
+
+       
+                </RadioGroup>
+                <button onClick={handleDatePage}>Next</button>
+              </FormControl>)}
+
+
+        </div>
+
+
     </div>
                     </div>
         
@@ -111,9 +189,19 @@ useEffect(()=>{
         
         
         
-        <div>Apple is false</div>}
-        <div>Another div inside FirstPage conditional rendering</div>
+        <div>Fourwheeler</div>}
+        <div>Fourwheeler</div>
     </div>
+)}
+
+{datePage && (
+
+  
+<StaticDatePicker
+label="Select Date"
+value={date}
+onChange={handleDateChange}
+/>
 )}
 
 
